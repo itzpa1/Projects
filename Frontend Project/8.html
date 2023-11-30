@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 8</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: monospace;
+            background-image: url(img/bg.jpg);
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            font-size: 18px;
+        }
+
+        .containerBox {
+            width: 70%;
+            height: 80%;
+            margin-top: 100px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            backdrop-filter: blur(2px);
+            padding: 10px;
+        }
+
+        .containerBox .question {
+            border-bottom: 2px solid #000;
+        }
+
+        .containerBox .question span {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+
+
+        .answerBox {
+            /* font-family: none; */
+            width: 90%;
+            height: 90%;
+            background: #fff;
+        }
+
+        .answer h2 {
+            color: blue;
+        }
+
+        hr {
+            height: 5px;
+            background: red;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        th,
+        td {
+            text-align: center;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="containerBox">
+        <h2 class="question">Questions 8:<span>Create a student registration form using text, radio button, check box, drop down box, text field and all other required HTML elements. Customize the CSS and javascript to input and validate all data. Create functions to perform validation of each element, example: • Roll number is a 7-digit numeric value • Name should be an alphabetical value (String) • Non-empty and valid fields like DOB.</span></h2>
+        <div class="answer">
+            <h2>Answer:</h2>
+            <div class="answerBox">
+                <div class="q1">
+                    <p>1. This is Table of : <input type="number" id="tableN" placeholder="?" required
+                            onchange="createTable()"></p>
+                    <div id="table">
+                        <!-- this space is for table... -->
+                    </div>
+                </div>
+                <div class="q2">
+                    <p>2. Enter three Numbers : <input type="number" placeholder="N1" id="n1" required><input type="number"
+                            placeholder="N2" id="n2" required><input type="3" placeholder="N3" id="n3" required></p>
+                    <h3></h3>
+                    <button onclick="largestN()">Check</button>
+                </div>
+                <div class="q3">
+                    <p>3. Factorial of : <input type="number" placeholder="number" required></span></p>
+                </div>
+                <div class="q4">
+                    <p>4. <button onclick="list()">Click</button></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    // for question 1 Table 
+
+    tableChart = document.getElementById("table");
+    table = "";
+    function createTable() {
+        tableN = document.querySelector('#tableN').value;
+        for (let i = 0; i < 10;) {
+            i += 1;
+
+            n = i * tableN;
+            data = "<p>" + tableN + " x " + i + " = " + n + "</p>";
+            // console.log(data);
+            table += data;
+
+        }
+        console.log(table)
+        tableChart.innerHTML = table;
+    }
+
+    // for question 2 largest number        
+
+
+    function largestN() {
+        var n1 = document.getElementById("n1").value;
+        var n2 = document.getElementById("n2").value;
+        var n3 = document.getElementById("n3").value;
+
+        if (n1 == "" || n2 == "" || n3 == "") {
+            alert("Please fill all number boxes..")
+        } else {
+            if (n1 >= n2 && n2 >= n3) {
+
+                document.querySelector(".q2 h3").innerHTML = n1 + " is the largest number."
+            } else if (n2 >= n1 && n2 >= n3) {
+
+                document.querySelector(".q2 h3").innerHTML = n2 + " is the largest number."
+            } else {
+                document.querySelector(".q2 h3").innerHTML = n3 + " is the largest number."
+            }
+        }
+
+
+    }
+
+    // for q3 find factorial
+
+    function factorial() {
+        function factorial(number) {
+            let result = 0;
+
+            for (let i = 2; i <= number; i++) {
+                result = result * i;
+            }
+
+            return result;
+        }
+    }
+
+    // for q4 
+
+    function list() {
+        var listData = document.querySelector(".q4");
+        let numbers = [];
+        let input = prompt("Enter a positive number (enter 0 to terminate): ");
+        while (input !== "0") {
+            let number = Number(input);
+            if (number > 0) {
+                numbers.push(number);
+            }
+            input = prompt("Enter a positive number (enter 0 to terminate): ");
+
+        }
+
+        const sum = numbers.reduce((partialSum, a) => partialSum + a, 0);
+        console.log(sum);
+
+        console.log(numbers);
+        listData.innerHTML = "<p>4. The list given by user is: [" + numbers + "], sum of list is: " + sum;
+    }
+</script>
+
+</html>
